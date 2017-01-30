@@ -20,6 +20,14 @@
 #   You should have received a copy of the GNU General Public License
 #   along with do-mpc.  If not, see <http://www.gnu.org/licenses/>.
 #
+import sys
+import os
+if('CASADI_DIR' in os.environ):
+    casadi_dir = os.environ['CASADI_DIR']
+    sys.path.append(os.path.dirname(casadi_dir))
+else:
+    raise Exception('Cannot load Casadi. Please set the environment variable CASADI_DIR to the directory CasADi is located')
+
 
 import matplotlib.pyplot as plt
 from casadi import *

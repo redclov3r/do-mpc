@@ -24,6 +24,14 @@
 #   Important parts of this script were coded in colaboration with Joel Andersson.
 #   his support is gratefully acknowledged
 
+import sys
+import os
+if('CASADI_DIR' in os.environ):
+    casadi_dir = os.environ['CASADI_DIR']
+    sys.path.append(os.path.dirname(casadi_dir))
+else:
+    raise Exception('Cannot load Casadi. Please set the environment variable CASADI_DIR to the directory CasADi is located')
+
 from casadi import *
 import numpy as NP
 from . import core_do_mpc
