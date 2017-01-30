@@ -21,11 +21,12 @@
 #   along with do-mpc.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import setup_nlp
+from . import setup_nlp
 from casadi import *
-import data_do_mpc
+from . import data_do_mpc
 import numpy as NP
 import pdb
+
 class ocp:
     """ A class that contains a full description of the optimal control problem and will be used in the model class. This is dependent on a specific element of a model class"""
     def __init__(self, param_dict, *opt):
