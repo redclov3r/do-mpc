@@ -5,4 +5,9 @@ setup(
     version="0.1",
     package_dir={'':'src'},
     packages=find_packages('src'),
+    install_requires=[
+        'numpy',
+        'scipy',
+        'matplotlib',
+        ],
 )
