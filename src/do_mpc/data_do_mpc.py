@@ -32,7 +32,7 @@ else:
 import matplotlib.pyplot as plt
 from casadi import *
 import numpy as NP
-import core_do_mpc
+from . import core_do_mpc
 from matplotlib.ticker import MaxNLocator
 import scipy.io
 
