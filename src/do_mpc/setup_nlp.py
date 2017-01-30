@@ -95,10 +95,10 @@ def setup_nlp(model, optimizer):
     # Right hand side of the ODEs
     # NOTE: look scaling (appears to be fine)
     for i in (x0, x_ub, x_lb, x_init):
-        i /= x_scaling
+        i = i/x_scaling
     xdot = substitute(xdot, x, x * x_scaling) / x_scaling
     for i in (u_ub, u_lb, u_init):
-        i /= u_scaling
+        i = i/u_scaling
     xdot = substitute(xdot, u, u * u_scaling)
     ffcn = Function('ffcn', [x, up], [xdot])
 
