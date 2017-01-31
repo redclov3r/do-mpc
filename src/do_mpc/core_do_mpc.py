@@ -221,6 +221,11 @@ class configuration:
         # Set options
         opts = {}
         opts["expand"] = True
+        opts["verbose_init"] = False
+        opts["print_time"] = False
+        opts["verbose"] = False
+        opts["ipopt.print_level"] = 0
+        opts["ipopt.sb"] = "yes"  # supress banner
         opts["ipopt.linear_solver"] = self.optimizer.linear_solver
         # NOTE: this could be passed as parameters of the optimizer class
         opts["ipopt.max_iter"] = 500
@@ -256,6 +261,8 @@ class configuration:
         v_opt = self.optimizer.opt_result_step.optimal_solution
         self.optimizer.u_mpc = NP.resize(
             NP.array(v_opt[U_offset[0][0]:U_offset[0][0] + nu]), (nu))
+        rounded = list(map(lambda x: round(x * 4) / 4, self.optimizer.u_mpc))
+        self.optimizer.u_mpc = rounded
 
     def make_step_observer(self):
         self.make_measurement()
@@ -300,7 +307,7 @@ class configuration:
         mpc_iteration = self.simulator.mpc_iteration - 1
         data = self.mpc_data
         data.mpc_states = NP.append(
-            data.mpc_states, [self.simulator.xf_sim], axis=0)
+            data.mpc_states, [[self.simulator.xf_sim]], axis=0)
         # pdb.set_trace()
         data.mpc_control = NP.append(
             data.mpc_control, [self.optimizer.u_mpc], axis=0)

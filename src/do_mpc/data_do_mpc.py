@@ -239,7 +239,7 @@ def plot_animation(configuration):
             plt.xlabel("Time")
             plt.grid()
             plot.yaxis.set_major_locator(MaxNLocator(4))
-        raw_input("Press Enter to continue...")
+        input("Press Enter to continue...")
 
     else:
         # nothing to be done if no animation is chosen
